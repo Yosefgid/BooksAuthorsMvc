@@ -29,6 +29,17 @@ namespace BooksAuthorsMVC.Controllers
             return Ok(allBooksById);
         }
 
+        [HttpPost]
+        public IActionResult AddBook(Book book)
+        {
+            var newBook = _bookService.AddBook(book);
+            if (newBook == null)
+            {
+                return NotFound($"{newBook} not found");
+            }
+            return StatusCode(201, newBook);
+        }
+
 
         /*[HttpGet]
         public IActionResult GetAllAuthors()

@@ -19,6 +19,21 @@ namespace BooksAuthorsMVC.Models
             return books.Find(b => b.Id == id);
 
         }
+
+        public Book PushBook(Book book)
+        {
+            var jsonBook = File.ReadAllText(filePath);
+            var books = JsonSerializer.Deserialize<List<Book>>(jsonBook);
+
+            book.Id = books.Max(a => a.Id) + 1;
+            books.Add(book);
+            var updateJson = JsonSerializer.Serialize(books, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+            File.WriteAllText(filePath, updateJson);
+            return book;
+        }
         
         /*
         public Author FetchAuthorById(int id)

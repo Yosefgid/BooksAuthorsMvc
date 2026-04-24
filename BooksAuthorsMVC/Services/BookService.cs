@@ -6,10 +6,12 @@ namespace BooksAuthorsMVC.Services
     public class BookService
     {
         private readonly BookModel _bookModel;
+        private readonly AuthorModel _authorModel;
 
-        public BookService(BookModel bookModel)
+        public BookService(BookModel bookModel, AuthorModel authorModel)
         {
             _bookModel = bookModel;
+            _authorModel = authorModel;
         }
 
         public List<Book> GetAllBooks()
@@ -20,6 +22,18 @@ namespace BooksAuthorsMVC.Services
         public Book GetBookByID(int id)
         {
             return _bookModel.FetchBookById(id);
+        }
+
+        public Book AddBook(Book book)
+        {
+            var author = _authorModel.FetchAuthorById(book.AuthorId);
+
+            if (author == null)
+            {
+                return null;
+            }
+
+            return _bookModel.PushBook(book);
         }
 
         /*public List<Author> GetAllAuthors()
