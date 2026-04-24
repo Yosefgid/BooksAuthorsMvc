@@ -11,6 +11,14 @@ namespace BooksAuthorsMVC.Models
             var jsonBooks = File.ReadAllText(filePath);
             return JsonSerializer.Deserialize<List<Book>>(jsonBooks);
         }
+
+        public Book FetchBookById(int id)
+        {
+            var jsonBooks = File.ReadAllText(filePath);
+            var books = JsonSerializer.Deserialize<List<Book>>(jsonBooks);
+            return books.Find(b => b.Id == id);
+
+        }
         
         /*
         public Author FetchAuthorById(int id)
