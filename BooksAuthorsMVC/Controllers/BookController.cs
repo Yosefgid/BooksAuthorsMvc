@@ -6,17 +6,23 @@ namespace BooksAuthorsMVC.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AuthorController : ControllerBase
+    public class BookController : ControllerBase
     {
-        private readonly AuthorService _authorService;
+        private readonly BookService _bookService;
 
-        public AuthorController(AuthorService authorService)
+        public BookController(BookService bookService)
         {
-            _authorService = authorService;
+            _bookService = bookService;
         }
 
-
         [HttpGet]
+        public IActionResult GetAllBooks()
+        {
+            var allBooks = _bookService.GetAllBooks();
+            return Ok(allBooks);
+        }
+
+        /*[HttpGet]
         public IActionResult GetAllAuthors()
         {
             var allAuthors = _authorService.GetAllAuthors();
@@ -44,6 +50,6 @@ namespace BooksAuthorsMVC.Controllers
         {
             var deleted = _authorService.DeleteAuthor(id);
             return NoContent();
-        }
+        }*/
     }
 }
