@@ -21,5 +21,11 @@ namespace BooksAuthorsMVC.Controllers
             var allAuthors = _authorService.GetAllAuthors();
             return Ok(allAuthors);
         }
+        [HttpGet("{id}")] 
+        public IActionResult GetAuthorById(int id)
+        {
+            var authorById = _authorService.GetAuthorById(id);
+            return Ok(authorById);
+        }
     }
 }

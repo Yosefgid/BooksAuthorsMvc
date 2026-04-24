@@ -16,5 +16,10 @@ namespace BooksAuthorsMVC.Services
         {
             return _authorModel.FetchAuthors();
         }
+
+        public Author GetAuthorById(int id)
+        {
+            return _authorModel.FetchAuthorById(id);
+        }
     }
 }
