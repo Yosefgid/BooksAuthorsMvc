@@ -9,6 +9,13 @@ namespace BooksAuthorsMVC
 
             app.MapGet("/", () => "Hello World!");
 
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                _ = endpoints.MapControllers();
+
+            });
+
             app.Run();
         }
     }
