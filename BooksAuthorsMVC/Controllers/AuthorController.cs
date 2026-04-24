@@ -1,4 +1,5 @@
-﻿using BooksAuthorsMVC.Services;
+﻿using BooksAuthorsMVC.Models;
+using BooksAuthorsMVC.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksAuthorsMVC.Controllers
@@ -26,6 +27,15 @@ namespace BooksAuthorsMVC.Controllers
         {
             var authorById = _authorService.GetAuthorById(id);
             return Ok(authorById);
+        }
+
+
+        [HttpPost]
+        public IActionResult AddAuthor(Author author)
+        {
+            var newAuthor = _authorService.AddAuthor(author);
+            return StatusCode(201, newAuthor);
+            //return Ok(newAuthor);
         }
     }
 }

@@ -21,5 +21,10 @@ namespace BooksAuthorsMVC.Services
         {
             return _authorModel.FetchAuthorById(id);
         }
+
+        public Author AddAuthor(Author author)
+        {
+            return _authorModel.PushAuthor(author);
+        }
     }
 }
