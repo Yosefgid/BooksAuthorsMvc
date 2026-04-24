@@ -26,5 +26,9 @@ namespace BooksAuthorsMVC.Services
         {
             return _authorModel.PushAuthor(author);
         }
+        public bool DeleteAuthor(int id)
+        {
+            return _authorModel.RemoveAuthor(id);
+        }
     }
 }

@@ -15,14 +15,14 @@ namespace BooksAuthorsMVC.Controllers
             _authorService = authorService;
         }
 
-        
+
         [HttpGet]
         public IActionResult GetAllAuthors()
         {
             var allAuthors = _authorService.GetAllAuthors();
             return Ok(allAuthors);
         }
-        [HttpGet("{id}")] 
+        [HttpGet("{id}")]
         public IActionResult GetAuthorById(int id)
         {
             var authorById = _authorService.GetAuthorById(id);
@@ -36,6 +36,14 @@ namespace BooksAuthorsMVC.Controllers
             var newAuthor = _authorService.AddAuthor(author);
             return StatusCode(201, newAuthor);
             //return Ok(newAuthor);
+        }
+
+        [HttpDelete("{id}")]
+
+        public IActionResult DeleteAuthor(int id)
+        {
+            var deleted = _authorService.DeleteAuthor(id);
+            return NoContent();
         }
     }
 }
